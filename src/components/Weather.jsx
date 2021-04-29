@@ -15,10 +15,10 @@ import React from 'react'
 function Weather(props) {
   return (
     <div>
-        <h4>{props.data.name} - {props.data.sys.country}</h4>
+        {/* <h4>{props.data.name} - {props.data.sys.country}</h4>
         <h3>{props.data.main.temp}º - {props.data.weather[0].description}</h3>
         <h3>{props.data.main.temp_min}º - {props.data.main.temp_max}º - {props.data.main.feels_like}º</h3>
-        <h3>{props.data.wind.speed}km/h - {props.data.main.humidity}%</h3>
+        <h3>{props.data.wind.speed}km/h - {props.data.main.humidity}%</h3> */}
     </div>
   )
 }

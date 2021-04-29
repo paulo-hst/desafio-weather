@@ -1,5 +1,9 @@
+// http://api.openweathermap.org/data/2.5/weather
+
 import axios from 'axios'
 
-export const api = axios.create({
-    baseURL: 'http://api.openweathermap.org/data/2.5/weather?'
+const api = axios.create({
+    baseURL: 'http://api.openweathermap.org/data/2.5/weather'
 })
+
+export default api

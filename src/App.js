@@ -1,32 +1,50 @@
 import React, { useEffect, useState } from 'react'
-import api from 'axios'
+import api from './services/api'
 import Capital from './components/Capital'
 import Weather from './components/Weather';
 
 const API_KEY = process.env.REACT_APP_API_KEY
-const BASE_URL = 'http://api.openweathermap.org/data/2.5/weather?'
-const LANGUAGE = 'pt_br'
-const cidadeTeste = 'SALVADOR'
+// const LANGUAGE = ''
+const cidadeTeste = 'Salvador'
 
 export default function App() {
+//?q=${cidadeTeste},br&APPID=${API_KEY}&lang=${LANGUAGE}&units=metric
 
   const [ weatherData, setWeatherData ] = useState({})
-
+  const [ isLoading, setIsLoading ] = useState(true)
+  const [ error, setError ] = useState('')
+  
   useEffect(() => {
-    apiCall()
-  }, [])
+    api
+      .get(`?q=${cidadeTeste},br&APPID=${API_KEY}&lang=pt_br&units=metric`)
+      .then(resp => {
+        setWeatherData(resp.data)
+        setIsLoading(false)
+      })
+      .catch(resp => {
+        setError(resp.error)
+        setIsLoading(false)
+      })
+  },[])
 
-  async function apiCall(){
-    const { data } = await api.get(`${BASE_URL}q=${cidadeTeste},br&APPID=${API_KEY}&lang=${LANGUAGE}&units=metric`)
-    setWeatherData(data)
+  if(isLoading){
+    // utilizar skeleton?
+    return <p>Carregando ...</p>
   }
 
-  return (
+  if(error){
+    return <p>Erro: {error.message}</p>
+  }
+  
+
+  return (  
     <div>
       <h1>Previsão do tempo</h1>
       <input type="text"/>
 
-      <Weather data={weatherData}/>
+      <p>Cidade: {weatherData.name}</p>
+
+      <Weather />
       <Capital />
 
     </div>
