@@ -42,9 +42,9 @@ export default function App() {
       <h1>Previsão do tempo</h1>
       <input type="text"/>
 
-      <p>Cidade: {weatherData.name}</p>
+      <h1>Cidade: {weatherData.name}</h1>
 
-      <Weather />
+      <Weather data={weatherData}/>
       <Capital />
 
     </div>
