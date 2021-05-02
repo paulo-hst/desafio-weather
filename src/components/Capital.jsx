@@ -9,24 +9,25 @@ export default function Capital() {
   const [max, setMax] = useState([]);
   const [min, setMin] = useState([]);
 
-  useEffect(() => {
-    cities.map((item) => {
-      api
-        .get(`?q=${item},br&APPID=${API_KEY}&lang=pt-br&units=metric`)
-        .then((resp) => {
-          // setCapital(i => [...i, resp.data.name])
-          // setMax(i => [...i, resp.data.main.temp_max])
-          // setMin(i => [...i, resp.data.main.temp_min])
+  // setCapital(i => [...i, resp.data.name]);
+  // setMax(i => [...i, resp.data.main.temp_max]);
+  // setMin(i => [...i, resp.data.main.temp_min]);
 
-          if (capital[26]) {
-            return;
-          }
-          setCapital(i => [...i, resp.data.name]);
-          setMax(i => [...i, resp.data.main.temp_max]);
-          setMin(i => [...i, resp.data.main.temp_min]);
-        });
-    });
-  }, []);
+
+  // useEffect(()=>{
+  //   getData(cities[0])
+  //   console.log(capital)
+  // }, [capital])
+
+  // async function getData(city){
+  //   capital.map(async item => {
+  //     const { data } = await api.get(`?q=${city},br&APPID=${API_KEY}&lang=pt-br&units=metric`)
+      
+  //   console.log(capital)
+  //   })
+  // }
+  
+  
 
   return (
     <div>
@@ -42,21 +43,8 @@ export default function Capital() {
 
         <tbody>
           <tr>
-            {capital.map(item => <td>{item}</td>)}
-            {max.map(item => <td>{item}</td>)}
-            {min.map(item => <td>{item}</td>)}
+            <td></td>
           </tr>
-
-          <tr>
-            
-          </tr>
-
-          {capital.map(item => <tr>
-            
-            {capital.map(item => <td>{item}</td>)}
-            {max.map(item => <td>{item}</td>)}
-            {min.map(item => <td>{item}</td>)}
-          </tr>)}
 
         </tbody>
 
