@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import api from './services/api'
-import Capital from './components/Capital'
+// import Capital from './components/Capital'
 import Weather from './components/Weather'
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-export default function App() {
+function App() {
 
   const [ city, setCity ] = useState('')
   const [ weatherData, setWeatherData ] = useState({})
   const [ error, setError ] = useState('')
   const [ isLoading, setIsLoading ] = useState(false)
 
-  async function searchCity(){
+  const [ found, setFound ] = useState(false)
+
+  async function searchCity(city){
 
     setIsLoading(true)
 
     await api
-    .get(`?q=${city},br&APPID=${API_KEY + 2}&lang=pt_br&units=metric`)
+    .get(`?q=${city},br&APPID=${API_KEY}&lang=pt_br&units=metric`)
     .then(resp => {
-      setWeatherData(resp.data)
       setIsLoading(false)
-      console.log('asd')
+      setWeatherData(resp.data)
+      setFound(true)
     })
     .catch(resp => {
       setError(resp.error)
       setIsLoading(false)
     })
-    console.log(city)
-    
   }
 
   if(isLoading){
@@ -47,11 +47,17 @@ export default function App() {
         type="text" 
         onChange={event => setCity(event.target.value)} 
       />
-      <button onClick={() => searchCity()}>Enviar</button>
+      <button onClick={() => searchCity(city)}>Enviar</button>
 
-      {/* <Weather data={weatherData}/>
-      <Capital /> */}
+      {/* CARREGAR COMPONENTE WEATHER APENAS AO ENCONTRAR CIDADE */}
+      {found === true ? <Weather data={weatherData}/> : ''}
+
+      <p>{JSON.stringify(weatherData.name)}</p>
+
+      {/* <Capital /> */}
 
     </div>
   )
 }
+
+export default React.memo(App)
