@@ -3,8 +3,6 @@ import React from 'react'
 export default function Weather(props) {
   const { name, main, sys, weather, wind } = props.data
 
-  console.log(props.data.name)
-
   return (
     <div>
         <h4>{name} - {sys.country}</h4>
