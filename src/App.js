@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import api from './services/api'
 import Weather from './components/Weather'
+import Skeleton from 'react-loading-skeleton'
+
+import SearchIcon from '@material-ui/icons/Search'
+
+import './App.scss'
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -41,7 +46,14 @@ function App() {
   }
 
   if(isLoading){
-    return <p>Carregando ...</p>
+    return (
+      <div>
+        
+        <p>Carregando ...</p>
+        
+        <Skeleton count={5} height={25}/>
+      </div>
+    )
   }
 
   if(error){
@@ -54,20 +66,30 @@ function App() {
   }
 
   return (  
-    <div>
-      <h1>Previsão do tempo</h1>
-      <input 
-        placeholder='Digite a cidade' 
-        type="text"
-        required
-        onChange={event => setCity(event.target.value)} 
-      />
-      <button onClick={() => searchCity(city)}>Enviar</button>
+    <div className="container">
+      <header>
+        <h1>Previsão do tempo</h1>
+      </header>
+      <section className="dataContainer">
+        <div className="input">
+          <input 
+          placeholder='Digite a cidade' 
+          type="text"
+          required
+          onChange={event => setCity(event.target.value)} 
+          />
+          <button onClick={() => searchCity(city)}>
+            <SearchIcon />
+          </button>
+        </div>
+        
+        <div className="weatherData">
+          {found === true ? <Weather data={weatherData}/> : ''}
 
-      {found === true ? <Weather data={weatherData}/> : ''}
-
-      {/* <Capital /> */}
-
+          {/* <Capital /> */}
+        </div>
+      </section>
+      
     </div>
   )
 }
