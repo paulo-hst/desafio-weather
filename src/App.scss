@@ -1,66 +1,64 @@
 body{
-    background: rgb(63,63,189);
-    background: linear-gradient(180deg, rgba(63,63,189,1) 0%, rgba(167,240,255,1) 100%);
+    background: #7777e0;
 }
 .container{
-    width: 100%;
+    max-width: 400px;
+
+    margin: 0 auto;
+    position: relative;
 
     header{
-        padding: 20px 0 10px 0;
+        padding: 0;
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
     }
     
     h1{
         color: #fff;        
-        font-size: 2.3rem;
-        font-weight: 800;
+        font-size: 1.2rem;
+        font-weight: 400;
         font-family: Source Sans Pro, sans-serif;
-        
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 1rem 1rem;
     }
-}
-.inputData{
-    margin: 1rem 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     input{ 
         border: none;
+        border-radius: 2rem;
 
-        height: 3rem;
+        width: 10rem;
+        height: 2rem;
         padding: 1rem;
+        margin: 0 1rem;
 
-        font-size: 1.2rem;        
+        font-size: 0.9rem;
+
+        opacity: 0.9;
     }
 
     input:focus{
         outline: none;
     }
-}
+
+    button{       
+        position: absolute;
+        background-color: transparent;
 
 
-.button{
-    margin-left: -3rem;
+        width: 2rem;
+        height: 2rem;
+
+        right: 0;
+        margin: 0 1rem;
+        padding: 0.2rem 0;
+        
+        border: none;
+        border-radius: 2rem;
     
-    width: 3rem;
-    height: 3rem;
-    
-    display: flex;
-    align-self: center;
-    
-    border: none;
-    background-color: transparent;
-
-    display: inline;
-    align-self: center;
-
-    cursor: pointer;
-}
-.buttonNotDisplay{
-    display: none;
+        cursor: pointer;
+    }
 }
 
 .weatherData{

@@ -19,6 +19,7 @@ function App() {
 
   async function searchCity(city){
 
+
     if(city !== ''){
       setIsLoading(true)
   
@@ -65,30 +66,22 @@ function App() {
       )
   }
 
-  function inputFocus(){
-    const searchButton = document.querySelector('button')    
-    searchButton.classList.toggle('buttonNotDisplay')
-  }  
-
   return (  
     <div className="container">
       <header>
         <h1>React Weather</h1>
-        <div className="inputData">
           <input
           placeholder='Digite a cidade' 
           type="text"
           required
-          onClick={() => inputFocus()}
           onChange={event => setCity(event.target.value)} 
           />
           <button
-            className="button buttonNotDisplay"
+            className="button"
             onClick={() => searchCity(city)}
           >
             <SearchIcon />
           </button>
-        </div>
       </header>
       <section className="dataContainer">
         
