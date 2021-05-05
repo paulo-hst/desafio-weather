@@ -23,7 +23,7 @@ function App() {
       setIsLoading(true)
   
       await api
-      .get(`?q=${city},br&APPID=${API_KEY}&lang=pt_br&units=metric`)
+      .get(`?q=${city}&APPID=${API_KEY}&lang=pt_br&units=metric`)
       .then(resp => {
         setIsLoading(false)
         setWeatherData(resp.data)
@@ -65,23 +65,32 @@ function App() {
       )
   }
 
+  function inputFocus(){
+    const searchButton = document.querySelector('button')    
+    searchButton.classList.toggle('buttonNotDisplay')
+  }  
+
   return (  
     <div className="container">
       <header>
-        <h1>Previsão do tempo</h1>
-      </header>
-      <section className="dataContainer">
-        <div className="input">
-          <input 
+        <h1>React Weather</h1>
+        <div className="inputData">
+          <input
           placeholder='Digite a cidade' 
           type="text"
           required
+          onClick={() => inputFocus()}
           onChange={event => setCity(event.target.value)} 
           />
-          <button onClick={() => searchCity(city)}>
+          <button
+            className="button buttonNotDisplay"
+            onClick={() => searchCity(city)}
+          >
             <SearchIcon />
           </button>
         </div>
+      </header>
+      <section className="dataContainer">
         
         <div className="weatherData">
           {found === true ? <Weather data={weatherData}/> : ''}
