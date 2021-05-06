@@ -46,6 +46,13 @@ function App() {
     }, 3000);
   }
 
+  const handleKeypress = e => {
+    //it triggers by pressing the enter key
+  if (e.keyCode === 13) {
+    alert('oi')
+  }
+};
+
   if(isLoading){
     return (
       <div>
@@ -75,6 +82,7 @@ function App() {
           type="text"
           required
           onChange={event => setCity(event.target.value)} 
+          onKeyPress={handleKeypress}
           />
           <button
             className="button"

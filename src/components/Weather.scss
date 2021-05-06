@@ -7,37 +7,74 @@
 
     width: 19rem;
 
-    background: #fff;
+    background: transparent;
 
+    color: white;
 }
 
 .mainTemperature{
     position: relative;
     
     h3{
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
-
-    img{
-        position: absolute;
-        width: 6rem;
-        right: -16px;   
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
     }
     
-    p{
-        font-size: 3rem;
+    p:nth-child(2){
+        text-align: center;
+        font-size: 3.5rem;
         font-weight: 500;
+        padding: 0.3rem 0 0.5rem 0;
+    }
+    
+    p:nth-child(3){
+        text-align: center;
+        font-size: 0.9rem;
+        color: #ccc;
+        font-weight: 400;
+    }
 
-        padding: 1rem 0;
+    div{
+        text-align: center;
+        padding: 0.5rem 0 0.1rem 0;
+
+        img{
+            height: 4rem;
+        }
     }
 }
 
 .primaryData{
-    font-size: 1.3rem;
-    color: var(--light-gray);
+    font-size: 0.9rem;
+    text-align: center;
+
+    p:first-child{
+        text-transform: capitalize;
+    }
 }
 
 .secondaryData{
-    color: var(--light-gray);
+    width: 90%;
+    border-radius: 5px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    font-size: 0.8rem;
+    background-color: rgb(173, 156, 248);
+
+    
+    .wind{
+        padding: 0.8rem 2rem;
+    }
+    
+    .humidity{
+        padding: 0.8rem 2rem;
+        border-left: 1px solid var(--light-blue);
+    }
 }

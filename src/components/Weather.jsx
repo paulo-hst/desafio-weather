@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { format } from 'date-fns/'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import './Weather.scss'
  
 export default function Weather(props) {
@@ -10,33 +13,44 @@ export default function Weather(props) {
   }
 
   function changeSpeed(speed){
-    return String(speed).replace('.', ',')
+    return String(Math.round(speed)).replace('.', ',')
   }
 
   function handleTime(){
-    
+    return format(new Date(), 'cccc, p', { locale: ptBR })
   }
   
   return (
     <div className="weatherContainer">
 
         <div className="mainTemperature">
-          <h3>{name} - {sys.country}</h3>
-          <img src={`http://openweathermap.org/img/w/${weather[0].icon}.png`} alt=""/>
+          <h3>{name}, {sys.country}</h3>
           <p>{roundTemperature(main.temp)}º</p>
+          <p>{handleTime()}</p>
+          <div>
+            <img src={`http://openweathermap.org/img/w/${weather[0].icon}.png`} alt=""/>
+          </div>
         </div>
 
         <div className="primaryData">
-          <p>terça-feira, 20h18</p>
           <p>{weather[0].description}</p>
-          <p>max: {roundTemperature(main.temp_min)}º | min: {roundTemperature(main.temp_max)}º</p>
+          <p>{roundTemperature(main.temp_max)}º | {roundTemperature(main.temp_min)}º</p>
+          <p>sensação térmica: {roundTemperature(main.feels_like)}º</p>
         </div>
         <br/>
+
         <div className="secondaryData">
-          <p>sensação térmica: {roundTemperature(main.feels_like)}º</p>
-          <p>vento: {changeSpeed(wind.speed)} km/h</p>
-          <p>umidade: {main.humidity}%</p>
+          <div className="wind">
+            <p>vento</p>
+            <p>{changeSpeed(wind.speed)} km/h</p>
+            
+          </div>
+          <div className="humidity">
+            <p>umidade</p>
+            <p>{main.humidity}%</p>            
+          </div>
         </div>
+
     </div>
   )
 }
