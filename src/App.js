@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import api from './services/api'
 import Weather from './components/Weather'
-import Skeleton from 'react-loading-skeleton'
+import Loading from './components/Loading'
 
 import SearchIcon from '@material-ui/icons/Search'
 
@@ -31,7 +31,6 @@ function App() {
         setFound(true)
       })
       .catch(err => {
-        console.log(err.response)
         setError(err.response)
         setIsLoading(false)
       })      
@@ -46,20 +45,33 @@ function App() {
     }, 3000);
   }
 
-  const handleKeypress = e => {
-    //it triggers by pressing the enter key
-  if (e.keyCode === 13) {
-    alert('oi')
-  }
-};
-
   if(isLoading){
     return (
-      <div>
-        
-        <p>Carregando ...</p>
-        
-        <Skeleton count={5} height={25}/>
+      <div className="container">
+        <header>
+          <h1>React Weather</h1>
+            <input
+            placeholder='Digite a cidade' 
+            type="text"
+            required
+            onChange={event => setCity(event.target.value)}
+            />
+            <button
+              className="button"
+              onClick={() => searchCity(city)}
+            >
+              <SearchIcon />
+            </button>
+        </header>
+
+        <section className="dataContainer">
+          
+          <div className="weatherData">
+            <Loading />
+            {/* <Capital /> */}
+          </div>
+        </section>
+
       </div>
     )
   }
@@ -81,8 +93,7 @@ function App() {
           placeholder='Digite a cidade' 
           type="text"
           required
-          onChange={event => setCity(event.target.value)} 
-          onKeyPress={handleKeypress}
+          onChange={event => setCity(event.target.value)}
           />
           <button
             className="button"

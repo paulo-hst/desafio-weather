@@ -1,6 +1,9 @@
 body{
-    background: linear-gradient(0deg, rgba(164, 165, 255, 0.705), rgb(123, 66, 255)) no-repeat;
+    background: linear-gradient(0deg, rgba(164, 165, 255, 0.705), rgb(81, 69, 253)) no-repeat;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .container{
     max-width: 400px;

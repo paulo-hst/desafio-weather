@@ -3,9 +3,18 @@ import React from 'react'
 import { format } from 'date-fns/'
 import ptBR from 'date-fns/locale/pt-BR'
 
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+
 import './Weather.scss'
+
+const iconStyle = {  
+  fontSize: '0.9rem', 
+  marginInline: 3,
+  color: 'purple'
+}
  
-export default function Weather(props) {
+export default function Weather(props) {  
   const { name, main, sys, weather, wind } = props.data
 
   function roundTemperature(temp){
@@ -34,7 +43,12 @@ export default function Weather(props) {
 
         <div className="primaryData">
           <p>{weather[0].description}</p>
-          <p>{roundTemperature(main.temp_max)}º | {roundTemperature(main.temp_min)}º</p>
+          <p>
+            <ArrowUpwardIcon 
+              style={ iconStyle }/>{roundTemperature(main.temp_max)}º | {roundTemperature(main.temp_min)}º
+              <ArrowDownwardIcon
+                style={ iconStyle }/>
+          </p>
           <p>sensação térmica: {roundTemperature(main.feels_like)}º</p>
         </div>
         <br/>
