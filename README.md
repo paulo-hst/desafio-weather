@@ -1,4 +1,4 @@
-<h1 align="center">Desafio weather</h1>
+<h1 align="center">Desafio Weather</h1>
 
 ## Objetivo
 Mini aplicação que retorna a temperatura atual de uma cidade. Foi desenvolvido a partir do modelo disponibilizado no repositório do GitHub FrontEnd Challenges da empresa 1STi.
